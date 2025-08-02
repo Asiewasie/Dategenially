@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dynamic Date</title>
+    <!-- Load Fredoka font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: 'Fredoka', sans-serif;
+        font-size: 24px;
+        color: #003366;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="date"></div>
+    <script>
+      const suffix = (d) => {
+        if (d > 3 && d < 21) return 'th';
+        switch (d % 10) {
+          case 1: return 'st';
+          case 2: return 'nd';
+          case 3: return 'rd';
+          default: return 'th';
+        }
+      };
+
+      const date = new Date();
+      const day = date.getDate();
+      const formattedDate = `${date.toLocaleDateString('en-GB', { weekday: 'long' })}, ${day}${suffix(day)} ${date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}`;
+      document.getElementById("date").textContent = formattedDate;
+    </script>
+  </body>
+</html>
